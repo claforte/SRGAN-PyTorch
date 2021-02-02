@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "test_image.py",
+            "type": "python",
+            "request": "launch",
+            "program": "test_image.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--lr", "frame_3400_8k-to-4k_downscaled_4x.png", 
+                "--hr", "frame_3400_8k-to-4k.png", 
+                "--arch", "srgan",
+                "--pretrained", 
+                "--upscale-factor", "4"
+            ]
+        }
+    ]
+}

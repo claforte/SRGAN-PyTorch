@@ -146,26 +146,29 @@ class Estimate(object):
         sr, use_time = inference(self.model, lr, statistical_time=True)
         vutils.save_image(sr, f"{args.outf}/{args.lr.split('/')[-1]}")  # Save super resolution image.
 
-        value = image_quality_evaluation(f"{args.outf}/{args.lr}", args.hr, self.device)
+        if False: # claforte: this hangs, haven't investigated why...
+            value = image_quality_evaluation(f"{args.outf}/{args.lr}", args.hr, self.device)
 
-        print(f"Performance avg results:\n")
-        print(f"indicator Score\n")
-        print(f"--------- -----\n")
-        if self.args.detail:
-            print(f"MSE       {value[0]:.2f}\n"
-                  f"RMSE      {value[1]:.2f}\n"
-                  f"PSNR      {value[2]:.2f}\n"
-                  f"SSIM      {value[3][0]:.4f}\n"
-                  f"MS-SSIM   {value[4].real:.4f}\n"
-                  f"NIQE      {value[5]:.2f}\n"
-                  f"SAM       {value[6]:.4f}\n"
-                  f"VIF       {value[7]:.4f}\n"
-                  f"LPIPS     {value[8].item():.4f}\n"
-                  f"Use time: {use_time * 1000:.2f}ms | {use_time:.4f}s")
+            print(f"Performance avg results:\n")
+            print(f"indicator Score\n")
+            print(f"--------- -----\n")
+            if self.args.detail:
+                print(f"MSE       {value[0]:.2f}\n"
+                    f"RMSE      {value[1]:.2f}\n"
+                    f"PSNR      {value[2]:.2f}\n"
+                    f"SSIM      {value[3][0]:.4f}\n"
+                    f"MS-SSIM   {value[4].real:.4f}\n"
+                    f"NIQE      {value[5]:.2f}\n"
+                    f"SAM       {value[6]:.4f}\n"
+                    f"VIF       {value[7]:.4f}\n"
+                    f"LPIPS     {value[8].item():.4f}\n"
+                    f"Use time: {use_time * 1000:.2f}ms | {use_time:.4f}s")
+            else:
+                print(f"PSNR      {value[0]:.2f}\n"
+                    f"SSIM      {value[1][0]:.2f}\n"
+                    f"Use time: {use_time * 1000:.2f}ms | {use_time:.4f}s")
         else:
-            print(f"PSNR      {value[0]:.2f}\n"
-                  f"SSIM      {value[1][0]:.2f}\n"
-                  f"Use time: {use_time * 1000:.2f}ms | {use_time:.4f}s")
+            print(f"Use time: {use_time * 1000:.2f}ms | {use_time:.4f}s")
 
 
 class Video(object):

@@ -53,7 +53,8 @@ def configure(args):
     # Create model
     if args.pretrained:
         logger.info(f"Using pre-trained model `{args.arch}`")
-        model = models.__dict__[args.arch](pretrained=True, upscale_factor=args.upscale_factor).to(device)
+        #model = models.__dict__[args.arch](pretrained=True, upscale_factor=args.upscale_factor).to(device)
+        model = models.__dict__[args.arch](pretrained=True).to(device)
     else:
         logger.info(f"Creating model `{args.arch}`")
         model = models.__dict__[args.arch](upscale_factor=args.upscale_factor).to(device)

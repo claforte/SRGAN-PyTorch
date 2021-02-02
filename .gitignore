@@ -124,7 +124,8 @@ dmypy.json
 
 # custom
 .idea
-.vscode
+#.vscode
+.vscode/settings.json
 
 .DS_Store
 
@@ -137,7 +138,6 @@ test
 output
 
 *.bmp
-*.png
 *.mp4
 *.zip
 *.csv
